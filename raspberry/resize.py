@@ -6,6 +6,9 @@ import os
 import constants
 import numpy as np
 from scipy import misc, ndimage
+import time
+import subprocess
+import shutil
 
 def resize(image, dim1=constants.DIM1, dim2=constants.DIM2):
 	return misc.imresize(image, (dim1, dim2))
@@ -40,7 +43,19 @@ def rpi_resize(directory='./input'):
  			if len(file) <= 4 or (file[-4:] != '.jpg' and file[-5:] != '.jpeg'):
  				continue
 
- 			pic = misc.imread(os.path.join(subdir, file))
+			while True:
+				try:
+	 				pic = misc.imread(os.path.join(subdir, file))
+					break
+				except:
+					print "Averting IO Error ...\n"
+					print "Retrying ... \n"
+					time.sleep(1)
+					shutil.rmtree('./input')
+					os.mkdir('./input')
+					subprocess.call(['bash','camera.sh'])
+					continue
+
  			dim1 = len(pic)
  			dim2 = len(pic[0])
  			if dim1 > dim2:

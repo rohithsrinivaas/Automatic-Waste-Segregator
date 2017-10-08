@@ -13,27 +13,27 @@ import RPi.GPIO as GPIO
 
 #motor_control.initialise()
 
-DISC_F_90=0.4720
-DISC_B_90=0.3778
-DISC_F_180=0.76
-DISC_B_180=0.755
+DISC_F_90=0.44
+DISC_B_90=0.460
+DISC_F_180=0.685
+DISC_B_180=0.65
 
-BRUSH_F_90=0.0795
-BRUSH_B_90=0.085
-BRUSH_F_180=0.165
-BRUSH_B_180=0.172
+BRUSH_F_90=0.1425
+BRUSH_B_90=0.1425
+BRUSH_F_180=0.2
+BRUSH_B_180=0.235
 
 def mover(score):
      # If any before
 
-    DISC_Forward=17
-    DISC_Backward=27
+    DISC_Forward=27
+    DISC_Backward=17
     DISC_PWM_PIN=22
     DISC_RPM=100.00
     DISC_RPM_C=(DISC_RPM/60)*2*math.pi
 
-    BRUSH_Forward=5
-    BRUSH_Backward=6
+    BRUSH_Forward=6
+    BRUSH_Backward=5
     BRUSH_PWM_PIN=13
     BRUSH_RPM=200.00*7/12
     BRUSH_RPM_C=(BRUSH_RPM/60)*2*math.pi
@@ -78,11 +78,11 @@ def mover(score):
         # Compartment 2, organic
 
         motor_control.DISC_and_BRUSH_forward_angle(90)
-        time.sleep(0.5)
+        time.sleep(1)
         motor_control.BRUSH_forward_time(BRUSH_F_90)
-        time.sleep(0.5)
+        time.sleep(1)
         motor_control.BRUSH_reverse_time(BRUSH_B_90)
-        time.sleep(0.5)
+        time.sleep(1)
         motor_control.DISC_and_BRUSH_reverse_angle(90)
 
     elif score[3]:

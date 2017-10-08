@@ -52,7 +52,7 @@ def main():
     print "Moving to bin \t",score," ..."
     print "Reference [glass metal organic plastic] \n"
     move_to_bin.mover(score)
-    s2=time.clock()                     # Timer 2
+                       # Timer 2
 
     stamp=datetime.datetime.now()
     stamp_path='./logs/'+str(stamp)
@@ -63,9 +63,11 @@ def main():
     #subprocess.call(['mv','./input_masked/input_masked.jpg',stamp_path])                      # Masked image
     subprocess.call(['mv','./input_resized/resized_input.jpg',stamp_path])      #Resized logs
 
-    subprocess.call(['mv','./ssh_output.txt/ssh_output.txt',stamp_path])        # Vision confidence
+    subprocess.call(['mv','./ssh_output/ssh_output.txt',stamp_path])        # Vision confidence
 
-    time.sleep(1)           #Steadying time
+    time.sleep(3)           #Steadying time
+    print "Killing of transients ...\n"
+    s2=time.clock()
     print "\n Total Run time \t", s2-s1
 
     print "#################################"
