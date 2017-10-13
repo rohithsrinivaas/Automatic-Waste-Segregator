@@ -34,7 +34,7 @@ def fileWalk(directory, destPath):
 			picResized = resize(pic,constants.DIM1, constants.DIM2)
 			misc.imsave(os.path.join(destPath, file), picResized)
 
-def rpi_resize(directory='./input'):
+def rpi_resize(directory='./input_masked'):
 	# function to be used as
 	# rpi_resize(os.path.join(os.getcwd(),'input'))
 
@@ -43,18 +43,7 @@ def rpi_resize(directory='./input'):
  			if len(file) <= 4 or (file[-4:] != '.jpg' and file[-5:] != '.jpeg'):
  				continue
 
-			while True:
-				try:
-	 				pic = misc.imread(os.path.join(subdir, file))
-					break
-				except:
-					print "Averting IO Error ...\n"
-					print "Retrying ... \n"
-					time.sleep(1)
-					shutil.rmtree('./input')
-					os.mkdir('./input')
-					subprocess.call(['bash','camera.sh'])
-					continue
+			pic = misc.imread(os.path.join(subdir, file))
 
  			dim1 = len(pic)
  			dim2 = len(pic[0])

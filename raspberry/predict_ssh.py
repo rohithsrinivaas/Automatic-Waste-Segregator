@@ -22,7 +22,7 @@ def predict_ssh(test=None,image=None):
 
     #image must be of form ./input/foo.jpg
     if not test:
-        #image_masked=masking.background_subtract()
+        image_masked=masking.background_subtract()
         image_resized=resize.rpi_resize()
 
     #Send over image

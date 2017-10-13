@@ -19,8 +19,8 @@ GPIO.cleanup()
 sleeptime=1
 
 ## CONSTANTS
-DISC_Forward=27
-DISC_Backward=17
+DISC_Forward=17
+DISC_Backward=27
 DISC_PWM_PIN=22
 DISC_RPM=100.00
 DISC_RPM_C=(DISC_RPM/60)*2*math.pi
@@ -39,14 +39,14 @@ GPIO.setup(DISC_Backward, GPIO.OUT)
 GPIO.setup(DISC_PWM_PIN,GPIO.OUT)
 
 DISC_PWM = GPIO.PWM(DISC_PWM_PIN,100)
-DISC_PWM.start(40)
+DISC_PWM.start(85)
 
 GPIO.setup(BRUSH_Forward, GPIO.OUT)
 GPIO.setup(BRUSH_Backward, GPIO.OUT)
 GPIO.setup(BRUSH_PWM_PIN,GPIO.OUT)
 
 BRUSH_PWM = GPIO.PWM(BRUSH_PWM_PIN,100)
-BRUSH_PWM.start(40)
+BRUSH_PWM.start(85)
 
 
 def DISC_forward(theta):
@@ -95,15 +95,15 @@ def BRUSH_reverse(theta):
 # Time based implementations
 ####
 
-DISC_F_90=0.4720
-DISC_B_90=0.3778
-DISC_F_180=0.76
-DISC_B_180=0.755
+DISC_F_90=0.44
+DISC_B_90=0.460
+DISC_F_180=0.685
+DISC_B_180=0.65
 
-BRUSH_F_90=0.0795
-BRUSH_B_90=0.085
-BRUSH_F_180=0.165
-BRUSH_B_180=0.172
+BRUSH_F_90=0.145
+BRUSH_B_90=0.145
+BRUSH_F_180=0.22
+BRUSH_B_180=0.22
 
 def DISC_forward_time(t):
 
@@ -211,10 +211,9 @@ if __name__=='__main__':
     count=0
     #initialise()
     while (1):
-
-        DISC_reverse_time(0.44)
-        time.sleep(1)
-        BRUSH_forward_time(0.14)
+        #DISC_and_BRUSH_forward_angle(180)
+        #DISC_reverse_time(0.685)
+        DISC_reverse_time(0.2)
         #BRUSH_forward_time(0.165)
         #BRUSH_forward_time(0.5)
         time.sleep(1)
